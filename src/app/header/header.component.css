@@ -1,0 +1,13 @@
+img {
+  max-width: 15%;
+  height: auto;
+}
+
+.social {
+  display: inline;
+  text-align: right;
+}
+
+a.social-link {
+  margin-right: 1rem;
+}
