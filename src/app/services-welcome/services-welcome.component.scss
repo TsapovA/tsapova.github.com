@@ -1,5 +1,6 @@
 .background-blue {
-  background-color: #c1d6d6;
+  background-clip: content-box;
+  background-color: #2d9fd9;
 }
 /*
 .circle {
@@ -46,6 +47,13 @@
   vertical-align: middle;
 }
 
+.link-to-service {
+  font-size: 1.5rem;
+
+  :hover {
+
+  }
+}
 /*---------------------------------------------*/
 
 
