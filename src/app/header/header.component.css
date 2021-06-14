@@ -1,6 +1,6 @@
 .background-color {
   background-clip: content-box;
-  background-color: dimgray;
+  background-image: linear-gradient(90deg, dimgray, gray);
 }
 
 img {

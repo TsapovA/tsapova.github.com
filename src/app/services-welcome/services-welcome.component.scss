@@ -8,9 +8,8 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 16vw;
-  height: 16vw;
-  //background-color: rgba(170, 165, 165, 0.32);
+  height: 16vh;
+  min-width: 16vh;
   background-color: rgba(213, 209, 209, 1);
   border-radius: 100%;
   border-style: double;
@@ -45,17 +44,13 @@
 .link-to-service {
   font-size: 1.5rem;
 
-
-  :hover {
-
+  &:hover {
+    color: whitesmoke;
+    transform: scale(1.1);
   }
 }
 
-.text-main-color {
+.text-main-params {
   color: #863a3a;
   font-weight: bold;
 }
-
-/*---------------------------------------------*/
-
-
