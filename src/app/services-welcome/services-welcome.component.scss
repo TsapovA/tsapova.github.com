@@ -1,26 +1,21 @@
-.background-blue {
+.background-color {
   background-clip: content-box;
-  background-color: #2d9fd9;
+  background-image: linear-gradient(45deg, gray, whitesmoke);
 }
-/*
-.circle {
-  height: 12rem;
-  width: 12rem;
-  background-color: whitesmoke;
-  border-radius: 50%;
-  display: inline-block;
-}
-*/
 
 .circle{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 22vw;
-  height: 22vw;
-  background-color: whitesmoke;
+  width: 16vw;
+  height: 16vw;
+  //background-color: rgba(170, 165, 165, 0.32);
+  background-color: rgba(213, 209, 209, 1);
   border-radius: 100%;
+  border-style: double;
+  border-color: dimgray;
+  border-width: thick;
 }
 
 .padding-top-big {
@@ -50,10 +45,17 @@
 .link-to-service {
   font-size: 1.5rem;
 
+
   :hover {
 
   }
 }
+
+.text-main-color {
+  color: #863a3a;
+  font-weight: bold;
+}
+
 /*---------------------------------------------*/
 
 
