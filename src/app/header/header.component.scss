@@ -4,15 +4,22 @@
 }
 
 img {
-  max-width: 15%;
+  max-width: 14%;
   height: auto;
 }
 
 .social {
+  margin-top: 1vh;
   display: inline;
   text-align: right;
 }
 
-a.social-link {
-  margin-right: 1rem;
+.link-header {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #863a3a;
+
+  &:hover {
+    color: whitesmoke;
+  }
 }
