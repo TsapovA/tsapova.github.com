@@ -3,9 +3,13 @@
   background-image: linear-gradient(90deg, dimgray, gray);
 }
 
-img {
-  max-width: 14%;
+img.logo {
+  max-width: 120px;
   height: auto;
+}
+
+img {
+  max-width: 8rem;
 }
 
 .social {
