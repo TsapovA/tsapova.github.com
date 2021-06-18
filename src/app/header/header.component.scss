@@ -1,6 +1,6 @@
 .background-color {
   background-clip: content-box;
-  background-image: linear-gradient(90deg, dimgray, gray);
+  background-image: linear-gradient(90deg, gray, rgba(105, 105, 105, 0.4));
 }
 
 img.logo {
@@ -21,7 +21,7 @@ img {
 .link-header {
   padding: 0.5rem 1rem;
   text-decoration: none;
-  color: #863a3a;
+  color: rgba(134, 58, 58, 0.9);
 
   &:hover {
     color: whitesmoke;
