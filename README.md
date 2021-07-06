@@ -14,7 +14,7 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Build prid
+## Build prod
 
 Run `ng build --prod` to build the project. The build artifacts will be stored in the `prod/` (see angular.json file 'ouputPath' param) directory.
 
