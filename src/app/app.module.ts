@@ -4,24 +4,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { ServicesWelcomeComponent } from './services-welcome/services-welcome.component';
-import { ServiceDonorComponent } from './service-donor/service-donor.component';
 import { AppRoutingModule } from './app-routing.module';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { DonorModule } from "./donor/donor.module";
+import { InProgressComponent } from './in-progress/in-progress.component';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DonorModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AppComponent,
     HeaderComponent,
     ServicesWelcomeComponent,
-    ServiceDonorComponent
+    InProgressComponent
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [ AppRoutingModule ]
+  exports: [
+    AppRoutingModule,
+  ]
 })
 export class AppModule { }

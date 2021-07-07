@@ -1,0 +1,101 @@
+<div class="container">
+  <h2 class="text-center">Заполните форму ниже</h2>
+  <form [formGroup]="newDonorForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="pet_type">Выберите животное</label>
+        <select class="form-select" id="pet_type" formControlName="type" (change)="onPetTypeChange($event)">
+          <option *ngFor="let petType of petTypes" value="{{petType.key}}">{{petType.name}}</option>
+        </select>
+
+      <div *ngIf="type?.invalid && (type?.dirty || type?.touched)">
+        <div *ngIf="type?.errors?.required">
+          Необходимо выбрать животное
+        </div>
+      </div>
+
+     <ng-container *ngIf="showBloodtype">
+        <label for="blood_type">Выберите группу крови</label>
+        <select class="form-control" id="blood_type" formControlName="bloodType">
+          <option *ngFor="let bloodType of catBloodTypes" [value]="bloodType.key">{{bloodType.name}}</option>
+        </select>
+       <div *ngIf="bloodType?.invalid && (bloodType?.dirty || bloodType?.touched)">
+         <div *ngIf="bloodType?.errors?.required">
+           Необходимо выбрать животное
+         </div>
+       </div>
+      </ng-container>
+
+      <ng-container>
+        <label for="age">Укажите возраст питомца (полных лет)</label>
+        <input type="number" class="form-control" id="age" formControlName="age">
+      </ng-container>
+
+      <div *ngIf="age?.invalid && (age?.dirty || age?.touched)" class="alert alert-danger">
+        <div *ngIf="age?.errors?.required">
+          Необходимо указать возраст питомца
+        </div>
+        <div *ngIf="age?.errors?.min">
+          Возраст питомца не может быть отрицательным
+        </div>
+        <div *ngIf="age?.errors?.max">
+          Возраст питомца не может превышать 50 лет
+        </div>
+      </div>
+
+      <ng-container>
+        <div>
+          <h4>Контактные данные владельца питомца</h4>
+        </div>
+        <label for="ownerSurname">Фамилия</label>
+        <input type="text" class="form-control" id="ownerSurname" formControlName="ownerSurname" required>
+        <div *ngIf="ownerSurname?.invalid && (ownerSurname?.dirty || ownerSurname?.touched)" class="alert alert-danger">
+          <div *ngIf="ownerSurname?.errors?.required">
+            Необходимо указать фамилию
+          </div>
+          <div *ngIf="ownerSurname?.errors?.minlength">
+            Минимально допустимая длина фамилии - 2 буквы
+          </div>
+          <div *ngIf="ownerSurname?.errors?.maxlength">
+            Максимально допустимая длина фамилии - 20 букв
+          </div>
+        </div>
+
+        <label for="ownerName">Имя</label>
+        <input type="text" class="form-control" id="ownerName" formControlName="ownerName" required>
+        <div *ngIf="ownerName?.invalid && (ownerName?.dirty || ownerName?.touched)" class="alert alert-danger">
+          <div *ngIf="ownerName?.errors?.required">
+            Необходимо указать имя
+          </div>
+          <div *ngIf="ownerName?.errors?.minlength">
+            Минимально допустимая длина имени - 2 буквы
+          </div>
+          <div *ngIf="ownerName?.errors?.maxlength">
+            Максимально допустимая длина имени - 20 букв
+          </div>
+        </div>
+
+        <label for="ownerEmail">Адрес электронной почты</label>
+        <input type="email" class="form-control" id="ownerEmail" placeholder="name@example.com" formControlName="ownerEmail" required>
+        <div *ngIf="ownerEmail?.invalid && (ownerEmail?.dirty || ownerEmail?.touched)" class="alert alert-danger">
+          <div *ngIf="ownerEmail?.errors?.required">
+            Необходимо указать адрес электронной почты
+          </div>
+          <div *ngIf="ownerEmail?.errors?.email">
+            Некорректный формат адреса электронной почты
+          </div>
+        </div>
+
+
+        <label for="ownerPhoneNumber">Номер телефона</label>
+        <input type="text" class="form-control" id="ownerPhoneNumber" placeholder="89111234567" formControlName="ownerPhoneNumber" required>
+        <div *ngIf="ownerPhoneNumber?.invalid && (ownerPhoneNumber?.dirty || ownerPhoneNumber?.touched)" class="alert alert-danger">
+          <div *ngIf="ownerPhoneNumber?.errors?.required">
+            Необходимо указать номер телефона
+          </div>
+        </div>
+
+      </ng-container>
+      <input type="submit" [disabled]="newDonorForm.invalid">
+    </div>
+  </form>
+</div>

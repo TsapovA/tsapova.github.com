@@ -4,22 +4,33 @@
 }
 
 img.logo {
-  max-width: 120px;
+  max-width: 140px;
+  max-height: 140px;
+  width: auto;
   height: auto;
+  float: left;
 }
 
-img {
-  max-width: 8rem;
+.app-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.app-description {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 .social {
-  margin-top: 1vh;
+  margin-top: 0.25vh;
   display: inline;
   text-align: right;
 }
 
 .link-header {
-  padding: 0.5rem 1rem;
+  padding: 0.2rem 0.75rem;
   text-decoration: none;
   color: rgba(134, 58, 58, 0.9);
 
