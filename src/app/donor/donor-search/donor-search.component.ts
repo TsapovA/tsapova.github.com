@@ -1,14 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
 import {Donor} from "../donor";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {catBloodTypes, catPetTypeKey, petTypes} from "../pet-constants";
 
 @Component({
-  selector: 'app-donor-new',
-  templateUrl: './donor-new.component.html',
-  styleUrls: ['./donor-new.component.css']
+  selector: 'app-donor-search',
+  templateUrl: './donor-search.component.html',
+  styleUrls: ['./donor-search.component.css']
 })
-export class DonorNewComponent implements OnInit {
+export class DonorSearchComponent implements OnInit {
 
   petTypes = petTypes
   catBloodTypes = catBloodTypes
@@ -28,12 +28,12 @@ export class DonorNewComponent implements OnInit {
     }
   }
 
-  newDonorForm!: FormGroup
+  searchDonorForm!: FormGroup
 
   constructor() { }
 
   ngOnInit(): void {
-    this.newDonorForm = new FormGroup({
+    this.searchDonorForm = new FormGroup({
       type: new FormControl(this.donor.pet.type, [Validators.required]),
       bloodType: new FormControl(this.donor.pet.bloodType),
       age: new FormControl(this.donor.pet.age, [Validators.required, Validators.min(0), Validators.max(50)]),
@@ -44,7 +44,7 @@ export class DonorNewComponent implements OnInit {
       ownerEmail: new FormControl(this.donor.owner.email, Validators.email),
       ownerPhoneNumber: new FormControl(this.donor.owner.phoneNumber, Validators.required)
     })
-    this.type?.setValue(petTypes[0]?.key)
+    this.type?.setValue(this.petTypes[0]?.key)
   }
 
   onPetTypeChange(event: Event) {
@@ -53,18 +53,18 @@ export class DonorNewComponent implements OnInit {
     console.log((event.target as HTMLInputElement).value)
   }
 
-  get type() { return this.newDonorForm.get('type')}
-  get bloodType() { return this.newDonorForm.get('bloodType')}
-  get age() { return this.newDonorForm.get('age')}
+  get type() { return this.searchDonorForm.get('type')}
+  get bloodType() { return this.searchDonorForm.get('bloodType')}
+  get age() { return this.searchDonorForm.get('age')}
 
-  get ownerName() { return this.newDonorForm.get('ownerName')}
-  get ownerSurname() { return this.newDonorForm.get('ownerSurname')}
-  get ownerEmail() { return this.newDonorForm.get('ownerEmail')}
-  get ownerPhoneNumber() { return this.newDonorForm.get('ownerPhoneNumber')}
+  get ownerName() { return this.searchDonorForm.get('ownerName')}
+  get ownerSurname() { return this.searchDonorForm.get('ownerSurname')}
+  get ownerEmail() { return this.searchDonorForm.get('ownerEmail')}
+  get ownerPhoneNumber() { return this.searchDonorForm.get('ownerPhoneNumber')}
 
   onSubmit(): void {
-    console.log(`form invalid: ${this.newDonorForm.invalid}`)
-    let value = this.newDonorForm.value;
+    console.log(`form invalid: ${this.searchDonorForm.invalid}`)
+    let value = this.searchDonorForm.value;
     console.log(value)
   }
 }
