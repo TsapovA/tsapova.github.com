@@ -12,7 +12,7 @@ export class DonorSearchComponent implements OnInit {
 
   petTypes = petTypes
   catBloodTypes = catBloodTypes
-  showBloodtype: boolean = false
+  showBloodType: boolean = false
 
   donor: Donor = {
     pet: {
@@ -49,7 +49,7 @@ export class DonorSearchComponent implements OnInit {
 
   onPetTypeChange(event: Event) {
     this.bloodType?.setValue(null);
-    this.showBloodtype = (event.target as HTMLInputElement).value == catPetTypeKey
+    this.showBloodType = (event.target as HTMLInputElement).value == catPetTypeKey
     console.log((event.target as HTMLInputElement).value)
   }
 
