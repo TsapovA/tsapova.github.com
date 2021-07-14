@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from "@angular/router";
-import { ServicesWelcomeComponent } from "./services-welcome/services-welcome.component";
+import { ServicesWelcomeComponent } from "./service-welcome/services-welcome.component";
 import { DonorWelcomeComponent } from "./donor/donor-welcome/donor-welcome.component";
 import {InProgressComponent} from "./in-progress/in-progress.component";
 
