@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Donor} from "../donor";
+import {Donor} from "../../api/donor";
 import {catBloodTypes, catPetTypeKey, petTypes} from "../pet-constants";
+import {CustomerService} from "../../service/customer.service";
+import {CustomerCreateRequest} from "../../api/customer-create-request";
 
 @Component({
   selector: 'app-donor-new',
@@ -21,6 +23,7 @@ export class DonorNewComponent implements OnInit {
       age: null
     },
     owner: {
+      id: null,
       surname: null,
       name: null,
       email: null,
@@ -30,7 +33,9 @@ export class DonorNewComponent implements OnInit {
 
   newDonorForm!: FormGroup
 
-  constructor() { }
+  constructor(
+    private customerService: CustomerService
+  ) { }
 
   ngOnInit(): void {
     this.newDonorForm = new FormGroup({
@@ -66,5 +71,10 @@ export class DonorNewComponent implements OnInit {
     console.log(`form invalid: ${this.newDonorForm.invalid}`)
     let value = this.newDonorForm.value;
     console.log(value)
+    let customerCreateRequest: CustomerCreateRequest = {
+      surname: this.ownerSurname,
+
+    }
+    this.customerService.save(customerCreateRequest)
   }
 }

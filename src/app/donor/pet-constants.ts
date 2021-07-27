@@ -1,7 +1,7 @@
-import {Dictory} from "./dictory";
+import {Dictory} from "../api/dictory";
 
-export const dogPetTypeKey = 'dog'
-export const catPetTypeKey = 'cat'
+export const dogPetTypeKey = 'DOG'
+export const catPetTypeKey = 'CAT'
 
 export const petTypes: Dictory[] = [
   { key: dogPetTypeKey, name: "собака" },
@@ -9,7 +9,7 @@ export const petTypes: Dictory[] = [
 ]
 
 export const catBloodTypes: Dictory[] = [
-  { key: "Unknown", name: "Не известно" },
+  { key: "UNKNOWN", name: "Не известно" },
   { key: "A", name: "A" },
   { key: "B", name: "B" },
   { key: "AB", name: "AB" }

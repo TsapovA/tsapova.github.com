@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {Donor} from "../donor";
+import {Donor} from "../../api/donor";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {catBloodTypes, catPetTypeKey, petTypes} from "../pet-constants";
+import {CustomerService} from "../../service/customer.service";
+import {tap} from "rxjs/operators";
+import {Customer} from "../../api/customer";
 
 @Component({
   selector: 'app-donor-search',
@@ -30,7 +33,8 @@ export class DonorSearchComponent implements OnInit {
 
   searchDonorForm!: FormGroup
 
-  constructor() { }
+  constructor(private customerService: CustomerService
+              ) { }
 
   ngOnInit(): void {
     this.searchDonorForm = new FormGroup({
@@ -45,6 +49,8 @@ export class DonorSearchComponent implements OnInit {
       ownerPhoneNumber: new FormControl(this.donor.owner.phoneNumber, Validators.required)
     })
     this.type?.setValue(this.petTypes[0]?.key)
+
+    this.onGetAllClick()
   }
 
   onPetTypeChange(event: Event) {
@@ -66,5 +72,17 @@ export class DonorSearchComponent implements OnInit {
     console.log(`form invalid: ${this.searchDonorForm.invalid}`)
     let value = this.searchDonorForm.value;
     console.log(value)
+  }
+
+  onGetAllClick() {
+    console.log('Start getAll method')
+    this.customerService.getAll().subscribe({
+      next: (customers) => {
+        for (let customer of customers) {
+          console.log(`Fetched customer: ${customer.id} ${customer.surname} ${customer.name} ${customer.email}
+            ${customer.phoneNumber}`)
+        }},
+      error: _ => { console.log("error!") }
+    });
   }
 }
