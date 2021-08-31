@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Donor} from "../../api/donor";
-import {catBloodTypes, catPetTypeKey, petTypes} from "../pet-constants";
-import {CustomerService} from "../../service/customer.service";
-import {CustomerCreateRequest} from "../../api/customer-create-request";
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {DictionaryService} from "../../service/dictionary.service";
+import {Dictionary} from "../../api/dictionary";
+import {catPetTypeKey} from "../pet-constants";
 
 @Component({
   selector: 'app-donor-new',
@@ -12,69 +11,85 @@ import {CustomerCreateRequest} from "../../api/customer-create-request";
 })
 export class DonorNewComponent implements OnInit {
 
-  petTypes = petTypes
-  catBloodTypes = catBloodTypes
+  petTypes: Dictionary[] = []
+  catBloodTypes: Dictionary[] = []
+  cities: Dictionary[] = []
+
   showBloodType: boolean = false
 
-  donor: Donor = {
-    pet: {
-      type: null,
-      bloodType: null,
-      age: null
-    },
-    owner: {
-      id: null,
-      surname: null,
-      name: null,
-      email: null,
-      phoneNumber: null
+  donorForm!: FormGroup
+  type!: AbstractControl
+  bloodType!: AbstractControl
+  age!: AbstractControl
+
+
+  constructor(
+    private dictoryService: DictionaryService
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.donorForm = new FormGroup({
+      type: new FormControl(null,
+        Validators.required),
+      bloodType: new FormControl(null),
+      age: new FormControl(0, [
+        Validators.required,
+        Validators.min(0),
+        Validators.max(50)]),
+      city: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(1)
+      ])
+    })
+
+    this.type = this.donorForm.controls['type']
+    this.bloodType = this.donorForm.controls['bloodType']
+    this.age = this.donorForm.controls['age']
+
+    //this.petTypes = petTypes
+    this.getPetTypes()
+    this.getCatBloodTypes()
+    this.getCities()
+  }
+
+  onSubmit(): void {
+    if (this.donorForm.invalid) {
+      return;
+    }
+    this.saveData()
+  }
+
+  saveData(): void {
+
+  }
+
+  getPetTypes(): void {
+    if (this.petTypes.length === 0)
+      this.dictoryService.getPetTypes().subscribe(values => {
+        console.log(values)
+        this.petTypes = values
+      })
+
+  }
+
+  getCatBloodTypes(): void {
+    if (this.catBloodTypes.length === 0) {
+      this.dictoryService.getCatBloodTypes().subscribe(values => this.catBloodTypes = values)
     }
   }
 
-  newDonorForm!: FormGroup
-
-  constructor(
-    private customerService: CustomerService
-  ) { }
-
-  ngOnInit(): void {
-    this.newDonorForm = new FormGroup({
-      type: new FormControl(this.donor.pet.type, [Validators.required]),
-      bloodType: new FormControl(this.donor.pet.bloodType),
-      age: new FormControl(this.donor.pet.age, [Validators.required, Validators.min(0), Validators.max(50)]),
-      ownerSurname: new FormControl(this.donor.owner.surname,
-        [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      ownerName: new FormControl(this.donor.owner.name,
-        [Validators.required, Validators.minLength(2), Validators.maxLength(20)]),
-      ownerEmail: new FormControl(this.donor.owner.email, Validators.email),
-      ownerPhoneNumber: new FormControl(this.donor.owner.phoneNumber, Validators.required)
-    })
-    this.type?.setValue(petTypes[0]?.key)
+  getCities(): void {
+    if (this.cities.length == 0) {
+      this.dictoryService.getCities().subscribe(values => this.cities = values);
+    }
   }
 
   onPetTypeChange(event: Event) {
-    this.bloodType?.setValue(null);
-    this.showBloodType = (event.target as HTMLInputElement).value == catPetTypeKey
+    console.log(`From the donor form: `)
+    console.log(this.donorForm.get('type'))
+    console.log(`From the event: `)
     console.log((event.target as HTMLInputElement).value)
-  }
-
-  get type() { return this.newDonorForm.get('type')}
-  get bloodType() { return this.newDonorForm.get('bloodType')}
-  get age() { return this.newDonorForm.get('age')}
-
-  get ownerName() { return this.newDonorForm.get('ownerName')}
-  get ownerSurname() { return this.newDonorForm.get('ownerSurname')}
-  get ownerEmail() { return this.newDonorForm.get('ownerEmail')}
-  get ownerPhoneNumber() { return this.newDonorForm.get('ownerPhoneNumber')}
-
-  onSubmit(): void {
-    console.log(`form invalid: ${this.newDonorForm.invalid}`)
-    let value = this.newDonorForm.value;
-    console.log(value)
-    let customerCreateRequest: CustomerCreateRequest = {
-      surname: this.ownerSurname,
-
-    }
-    this.customerService.save(customerCreateRequest)
+    this.showBloodType = catPetTypeKey == this.type.value
   }
 }

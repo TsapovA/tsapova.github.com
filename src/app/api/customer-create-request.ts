@@ -1,6 +1,7 @@
 export interface CustomerCreateRequest {
-  surname: String | null
-  name: String | null
+  surname: String
+  name: String
+  city: String
   email: String
   phoneNumber: String
 }

@@ -23,7 +23,7 @@ import { HttpClientModule } from "@angular/common/http";
     AppComponent,
     HeaderComponent,
     ServicesWelcomeComponent,
-    InProgressComponent
+    InProgressComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

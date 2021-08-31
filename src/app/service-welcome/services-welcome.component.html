@@ -1,20 +1,31 @@
-<section class="container background-color d-flex">
+<div class="container background-color">
+  <section class="d-flex flex-row flex-wrap justify-content-around align-content-center padding-top-mid padding-bottom-mid">
+    <div>
+      <div class="padding-bottom-mid">
+        <a class="circle text-decoration-none link-to-service" routerLink="/donors">
+          <span class="text-main-params">Донорство</span>
+        </a>
+      </div>
 
-  <div class="d-flex flex-wrap justify-content-evenly align-items-center align-content-center padding-top-mid">
-    <div class="circle">
-      <a class="link-to-service text-main-params text-decoration-none" routerLink="/donors" routerLinkActive="active">Донорство</a>
+      <div class="padding-bottom-mid">
+        <a class="circle text-decoration-none link-to-service" routerLink="/in-progress">
+          <span class="text-main-params">Клиники</span>
+        </a>
+      </div>
     </div>
-    <div class="circle">
-      <a class="link-to-service text-main-params text-decoration-none" routerLink="/in-progress">Клиники</a>
-    </div>
-  </div>
-  <div class="d-flex flex-wrap justify-content-evenly align-items-center align-content-center padding-top-mid padding-bottom-mid">
-    <div class="circle">
-      <a class="link-to-service text-main-params text-decoration-none" routerLink="/in-progress">Приюты</a>
-    </div>
-    <div class="circle">
-      <a class="link-to-service text-main-params text-decoration-none" routerLink="/in-progress">Аптеки</a>
-    </div>
-  </div>
 
-</section>
+    <div>
+      <div class="padding-bottom-mid">
+        <a class="circle text-decoration-none link-to-service" routerLink="/in-progress">
+          <span class="text-main-params">Приюты</span>
+        </a>
+      </div>
+
+      <div>
+        <a class="circle text-decoration-none link-to-service" routerLink="/in-progress">
+          <span class="text-main-params">Аптеки</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,5 +1,9 @@
+import {Customer} from "./customer";
+
 export interface Pet {
-  type: null,
-  bloodType: null,
-  age: null,
+  id: number | null,
+  type: String | null,
+  bloodType: String | null,
+  age: Number | null,
+  customer: Customer | null
 }

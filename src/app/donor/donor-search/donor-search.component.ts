@@ -13,6 +13,9 @@ import {Customer} from "../../api/customer";
 })
 export class DonorSearchComponent implements OnInit {
 
+  ngOnInit(): void {}
+
+  /*
   petTypes = petTypes
   catBloodTypes = catBloodTypes
   showBloodType: boolean = false
@@ -24,6 +27,7 @@ export class DonorSearchComponent implements OnInit {
       age: null
     },
     owner: {
+      id: null,
       surname: null,
       name: null,
       email: null,
@@ -85,4 +89,5 @@ export class DonorSearchComponent implements OnInit {
       error: _ => { console.log("error!") }
     });
   }
+  */
 }

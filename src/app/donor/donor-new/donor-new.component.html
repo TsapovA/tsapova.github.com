@@ -1,13 +1,14 @@
 <div class="container">
-  <form [formGroup]="newDonorForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="donorForm" (ngSubmit)="onSubmit()">
     <section class="donor-section">
       <h4>Данные о питомце</h4>
         <label class="mt-2" for="pet_type">Выберите животное</label>
         <select class="form-select mt-1" id="pet_type" formControlName="type" (change)="onPetTypeChange($event)">
-          <option *ngFor="let petType of petTypes" value="{{petType.key}}">{{petType.name}}</option>
+          <option hidden disabled value="test"></option>
+          <option *ngFor="let petType of petTypes" [ngValue]="petType.key" [value]="petType.key">{{ petType.textValue }}</option>
         </select>
 
-        <div class="mt-1" *ngIf="type?.invalid && (type?.dirty || type?.touched)">
+        <div class="alert alert-danger" *ngIf="type?.invalid && (type?.dirty || type?.touched)">
           <div *ngIf="type?.errors?.required">
             Необходимо выбрать животное
           </div>
@@ -16,11 +17,12 @@
         <ng-container *ngIf="showBloodType">
           <label for="blood_type" class="mt-2">Выберите группу крови</label>
           <select class="form-control mt-1" id="blood_type" formControlName="bloodType">
-            <option *ngFor="let bloodType of catBloodTypes" [value]="bloodType.key">{{bloodType.name}}</option>
+            <option hidden disabled selected></option>
+            <option *ngFor="let bloodType of catBloodTypes" [value]="bloodType.key">{{bloodType.textValue}}</option>
           </select>
-          <div class="mt-1" *ngIf="bloodType?.invalid && (bloodType?.dirty || bloodType?.touched)">
+          <div class="alert alert-danger" *ngIf="bloodType?.invalid && (bloodType?.dirty || bloodType?.touched)">
             <div *ngIf="bloodType?.errors?.required">
-              Необходимо выбрать животное
+              Необходимо выбрать группу крови
             </div>
           </div>
         </ng-container>
@@ -30,7 +32,7 @@
           <input type="number" class="form-control mt-1" id="age" formControlName="age">
         </ng-container>
 
-        <div *ngIf="age?.invalid && (age?.dirty || age?.touched)" class="alert alert-danger mt-1">
+        <div *ngIf="age?.invalid && (age?.dirty || age?.touched)" class="alert alert-danger">
           <div *ngIf="age?.errors?.required">
             Необходимо указать возраст питомца
           </div>
@@ -43,55 +45,15 @@
         </div>
     </section>
 
-      <section class="owner-section">
-        <h4>Контактные данные владельца питомца</h4>
-        <label for="ownerSurname" class="mt-2">Фамилия</label>
-        <input type="text" class="form-control mt-1" id="ownerSurname" formControlName="ownerSurname" required>
-        <div *ngIf="ownerSurname?.invalid && (ownerSurname?.dirty || ownerSurname?.touched)" class="alert alert-danger mt-1">
-          <div *ngIf="ownerSurname?.errors?.required">
-            Необходимо указать фамилию
-          </div>
-          <div *ngIf="ownerSurname?.errors?.minlength">
-            Минимально допустимая длина фамилии - 2 буквы
-          </div>
-          <div *ngIf="ownerSurname?.errors?.maxlength">
-            Максимально допустимая длина фамилии - 20 букв
-          </div>
-        </div>
-
-        <label for="ownerName" class="mt-2">Имя</label>
-        <input type="text" class="form-control mt-1" id="ownerName" formControlName="ownerName" required>
-        <div *ngIf="ownerName?.invalid && (ownerName?.dirty || ownerName?.touched)" class="alert alert-danger mt-1">
-          <div *ngIf="ownerName?.errors?.required">
-            Необходимо указать имя
-          </div>
-          <div *ngIf="ownerName?.errors?.minlength">
-            Минимально допустимая длина имени - 2 буквы
-          </div>
-          <div *ngIf="ownerName?.errors?.maxlength">
-            Максимально допустимая длина имени - 20 букв
-          </div>
-        </div>
-
-        <label for="ownerEmail" class="mt-2">Адрес электронной почты</label>
-        <input type="email" class="form-control mt-1" id="ownerEmail" placeholder="name@example.com" formControlName="ownerEmail" required>
-        <div *ngIf="ownerEmail?.invalid && (ownerEmail?.dirty || ownerEmail?.touched)" class="alert alert-danger mt-1">
-          <div *ngIf="ownerEmail?.errors?.email">
-            Некорректный формат адреса электронной почты
-          </div>
-        </div>
-
-
-        <label for="ownerPhoneNumber" class="mt-2">Номер телефона</label>
-        <input type="text" class="form-control mt-1" id="ownerPhoneNumber" placeholder="89111234567" formControlName="ownerPhoneNumber" required>
-        <div *ngIf="ownerPhoneNumber?.invalid && (ownerPhoneNumber?.dirty || ownerPhoneNumber?.touched)" class="alert alert-danger mt-1">
-          <div *ngIf="ownerPhoneNumber?.errors?.required">
-            Необходимо указать номер телефона
-          </div>
-        </div>
-
-      </section>
-    <button class="btn btn-primary mt-2" [disabled]="newDonorForm.invalid">Submit</button>
+    <section class="donor-section">
+      <label class="mt-2" for="city">Укажите населенный пункт</label>
+      <select class="form-select mt-1" id="city" formControlName="city">
+        <option hidden disabled selected></option>
+        <option *ngFor="let city of cities" value="{{ city.key }}">{{ city.textValue }}</option>
+      </select>
+    </section>
+    <button type="submit" [ngClass]="{ 'btn-primary': donorForm.valid, 'btn-secondary': donorForm.invalid }"
+            class="btn mt-2" [disabled]="donorForm.invalid">Submit</button>
   </form>
   <hr>
   <hr>
